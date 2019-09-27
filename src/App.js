@@ -5,7 +5,8 @@ class App extends Component {
 
   state = {
     userId: null,
-    rounds: []
+    rounds: [],
+    stats: {draw: 0, winner1: 0, winner2: 0, total: 0}
   }
 
   componentDidMount() {    
@@ -15,6 +16,8 @@ class App extends Component {
       this.setState({ userId: data.userId })
     })
     .catch(console.log)
+    this.updateStats()  
+    this.interval = setInterval(() => this.updateStats(), 1000);
   }
 
   playRound = () => {
@@ -22,7 +25,8 @@ class App extends Component {
     .then(res => res.json())
     .then((data) => {
       this.state.rounds.push(data)
-      this.setState({ rounds: this.state.rounds})      
+      this.setState({ rounds: this.state.rounds})
+      this.updateStats()      
     })
     .catch(console.log)
   }
@@ -30,7 +34,17 @@ class App extends Component {
   resetRounds = () => {
     fetch('http://localhost:8080/round/user/' + this.state.userId, {method: 'DELETE'})        
     .then((data) => {
-      this.setState({ rounds: []})      
+      this.setState({ rounds: []})
+      this.updateStats()      
+    })
+    .catch(console.log)
+  }
+
+  updateStats = () => {
+    fetch('http://localhost:8080/stats', {method: 'GET'})    
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ stats: {draw: data.DRAW, winner1: data.WINNER_PLAYER1, winner2: data.WINNER_PLAYER2, total: data.DRAW + data.WINNER_PLAYER1 + data.WINNER_PLAYER2}})      
     })
     .catch(console.log)
   }
@@ -42,8 +56,31 @@ class App extends Component {
           <h3>Paper, Rock, Scissor Game. Welcome {this.state.userId}</h3>          
         </header>
         <section>
+          <div>
+            <table align="center">
+              <thead>
+                <tr>
+                  <th>Total Rounds</th>
+                  <th>Won by Player 1</th>
+                  <th>Won by Player 2</th>
+                  <th>Draw rounds</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{this.state.stats.total}</td>
+                  <td>{this.state.stats.winner1}</td>
+                  <td>{this.state.stats.winner2}</td>
+                  <td>{this.state.stats.draw}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <br/>
+        <section>
           <div className="App-result-table">
-            <table>
+            <table align="center">
               <thead>
                 <tr>
                   <th>Player 1 Option</th>
@@ -64,6 +101,7 @@ class App extends Component {
               </tbody>
             </table>            
           </div>
+          <br/>
           <button type="button" onClick={this.playRound}>Play Round</button>
           <button type="button" onClick={this.resetRounds}>Reset Game</button>
         </section>        
