@@ -63,7 +63,7 @@ class RoundComponent extends Component {
                                     <tr>
                                         <td>{value.firstPlayerOption}</td>
                                         <td>{value.secondPlayerOption}</td>
-                                        <td>{value.translatedResult}</td>
+                                        <td><div className="resultClass">{value.translatedResult}</div></td>
                                     </tr>
                                 )
                             })}
@@ -71,8 +71,8 @@ class RoundComponent extends Component {
                     </table>
                 </div>
                 <br />
-                <button type="button" onClick={this.playRound} className="RoundComponent-button">Play Round</button>
-                <button type="button" onClick={this.resetRounds} className="RoundComponent-button">Reset Game</button>
+                <button type="button" id="playRound" onClick={this.playRound} className="RoundComponent-button">Play Round</button>
+                <button type="button" id="resetGame" onClick={this.resetRounds} className="RoundComponent-button">Reset Game</button>
                 <footer className="RoundComponent-footer">
                     <p>Session identifier: {this.state.userId}</p>
                 </footer>
