@@ -1,0 +1,32 @@
+.StatsComponent h3 {
+  background-color: #252;    
+  color: white;
+}
+
+.StatsComponent-result-table table {  
+  border: 1px solid rgb(23, 206, 23);
+  background-color: #D4EED1;
+  width: 100%;
+  text-align: center;  
+}
+.StatsComponent-result-table table tbody td, .StatsComponent-result-table table thead th {
+  border: 1px solid rgb(23, 206, 23);
+  padding: 3px 2px;
+}
+.StatsComponent-result-table table tbody td {
+  font-size: 13px;
+}
+.StatsComponent-result-table table thead {
+  background: #252;  
+  border-bottom: 0px solid #444444;
+}
+.StatsComponent-result-table table thead th {
+  font-size: 19px;
+  font-weight: bold;
+  color: #F0F0F0;
+  text-align: center;
+  border-left: 2px solid #24943A;
+}
+
+
+
