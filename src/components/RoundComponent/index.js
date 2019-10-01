@@ -46,7 +46,7 @@ class RoundComponent extends Component {
         return (
             <section>
                 <div className="RoundComponent">
-                    <h3>Games Played</h3>
+                    <h3>Games Played: {this.state.rounds.length}</h3>
                 </div>
                 <div className="RoundComponent-result-table">
                     <table>
