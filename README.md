@@ -19,7 +19,11 @@ After that launch:
 
 ``` npm start ```
 
-By default it's configured for development environment to hit API in this HOST:
+By default, application will be launched in:
+
+``` http://localhost:3000/ ```
+
+And it's configured for development environment to use REST API in this HOST:
 
 ``` http://localhost:8080/ ```
 
@@ -30,6 +34,7 @@ But it's configurable using `.env` files.
 .env.production
 .env.test
 ```
+
 ## Scripts
 
 There are configured several launchers that could be used:
