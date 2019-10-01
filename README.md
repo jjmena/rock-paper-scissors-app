@@ -30,3 +30,15 @@ But it's configurable using `.env` files.
 .env.production
 .env.test
 ```
+## Scripts
+
+There are configured several launchers that could be used:
+
+* Install all dependencies.
+``` npm install ``` 
+* Start application
+``` npm start ```
+* Execute unit tests
+``` npm test ```
+* Execute E2E tests (it needs application and REST API running)
+``` npm run wdio ```
