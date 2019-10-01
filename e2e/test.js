@@ -25,6 +25,7 @@ describe('Rock, Paper, Scissor Game', () => {
 
     /* Reset Game */
     browser.click('#resetGame');        
+    browser.waitForText('#resetGame');
 
     /* Assert no-rounds*/
     let existing = browser.elements('.resultClass').isExisting()
